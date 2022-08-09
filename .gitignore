@@ -1,0 +1,26 @@
+### Terraform ###
+*.swa
+*.swo
+*.swp
+.terraform
+vars_provider.tf
+terraform.tfstate
+terraform.tfstate.*
+.terraform/
+terraform
+
+### Terragrunt ###
+# terragrunt cache directories
+**/.terragrunt-cache/*
+
+### Python ###
+__pycache__/
+venv/
+# Sphinx
+_build/
+
+### Mac OS ###
+.DS_Store
+
+### Editor ###
+.vscode/

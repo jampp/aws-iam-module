@@ -1,0 +1,33 @@
+name: Terraform Examples CI
+
+on:
+  pull_request:
+    paths:
+      - 'examples/**'
+
+jobs:
+  inline-complete-ci:
+    name: Inline Complete Example CI
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Check format
+        uses: docker://hashicorp/terraform:1.2.4
+        with:
+          entrypoint: terraform
+          args: -chdir=examples/inline-complete fmt -check
+
+      - name: Init Terraform
+        uses: docker://hashicorp/terraform:1.2.4
+        with:
+          entrypoint: terraform
+          args: -chdir=examples/inline-complete init
+
+      - name: Validate code
+        uses: docker://hashicorp/terraform:1.2.4
+        with:
+          entrypoint: terraform
+          args: -chdir=examples/inline-complete validate

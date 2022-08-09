@@ -1,0 +1,33 @@
+name: Terraform Modules CI
+
+on:
+  pull_request:
+    paths:
+      - 'modules/**'
+
+jobs:
+  inline-role-ci:
+    name: Inline Role CI
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Check format
+        uses: docker://hashicorp/terraform:1.2.4
+        with:
+          entrypoint: terraform
+          args: -chdir=modules/inline-role fmt -check
+
+      - name: Init Terraform
+        uses: docker://hashicorp/terraform:1.2.4
+        with:
+          entrypoint: terraform
+          args: -chdir=modules/inline-role init
+
+      - name: Validate code
+        uses: docker://hashicorp/terraform:1.2.4
+        with:
+          entrypoint: terraform
+          args: -chdir=modules/inline-role validate
