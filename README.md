@@ -2,13 +2,10 @@
 
 Terraform module for custom IAM resources.
 
-## Managed resources
+## Inline role
 
-- IAM Role
+### Usage
 
-## Usage
-
-#### Inline role
 ```hcl
 module "inline_role" {
   source = "git::git@github.com:jampp/terraform-iam-module.git?ref=<version>"
@@ -39,29 +36,29 @@ module "inline_role" {
 }
 ```
 
-## Examples
+### Examples
 - [Complete Inline Role](https://github.com/jampp/terraform-aws-iam-module/tree/main/examples/inline-complete) - Role with inline policies
 
-## Requirements
+### Requirements
 
 | Name | Version |
 |------|---------|
 | [terraform](#requirement\_terraform) | >= 1.0.0 |
 | [aws](#requirement\_aws) | >= 4.0 |
 
-## Providers
+### Providers
 
 | Name | Version |
 |------|---------|
 | [aws](#provider\_aws) | >= 4.0 |
 
-## Resources
+### Resources
 | Name | Type |
 |------|------|
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_role.iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 
-## Inputs
+### Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-------:|:--------:|
 | role_name | Friendly name of the role. If omitted, Terraform will assign a random, unique name | `string` | `""` | no |
@@ -72,7 +69,7 @@ module "inline_role" {
 | inline_policies | Map defining an exclusive set of IAM inline policies associated with the IAM role. | `map(any)` | `{}` | no |
 | tags | Tags for all resources managed by this module | `map(string)` | `{}` | no |
 
-## Outputs
+### Outputs
 
 | Name | Description |
 |------|-------------|
@@ -80,7 +77,9 @@ module "inline_role" {
 | instance_profile_arn | The ARN of the instance profile. |
 
 
-#### EKS Role with policies
+## EKS Role with policies
+
+### Usage
 ```hcl
 module "eks_role_with_policies" {
   source = "git::git@github.com:jampp/terraform-iam-module.git//modules/eks-role-with-policies?ref=<version>"
@@ -135,35 +134,35 @@ module "eks_role_with_policies" {
 }
 ```
 
-## Examples
+### Examples
 - [Complete EKS role with policies](https://github.com/jampp/terraform-aws-iam-module/tree/main/examples/eks-role-with-policies)
 
-## Requirements
+### Requirements
 
 | Name | Version |
 |------|---------|
 | [terraform](#requirement\_terraform) | >= 1.0.0 |
 | [aws](#requirement\_aws) | >= 4.0 |
 
-## Providers
+### Providers
 
 | Name | Version |
 |------|---------|
 | [aws](#provider\_aws) | >= 4.0 |
 
-## Modules
+### Modules
 
 | Name | Version |
 |------|---------|
 | [iam-eks-role](https://github.com/terraform-aws-modules/terraform-aws-iam/tree/master/modules/iam-eks-role) | == 5.3.0 |
 
-## Resources
+### Resources
 | Name | Type |
 |------|------|
 | [aws_iam_policy_document.policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy.policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 
-## Inputs
+### Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-------:|:--------:|
 | name | Name of IAM role | `string` | `null` | yes |
@@ -176,7 +175,7 @@ module "eks_role_with_policies" {
 | policies | Policies to create and attach to the IAM role | `any` | `{}` | no |
 | tags | A map of tags to add the the IAM role | `map(string)` | `{}` | no |
 
-## Outputs
+### Outputs
 
 | Name | Description |
 |------|-------------|
