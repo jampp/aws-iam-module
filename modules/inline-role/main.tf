@@ -21,3 +21,13 @@ resource "aws_iam_role" "iam_role" {
   tags = var.tags
 
 }
+
+
+resource "aws_iam_instance_profile" "instance_profile" {
+  count = var.create_instance_profile ? 1 : 0
+
+  name = var.role_name
+  role = aws_iam_role.iam_role.name
+
+  tags = var.tags
+}
