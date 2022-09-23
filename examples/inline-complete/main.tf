@@ -8,6 +8,8 @@ module "inline_complete" {
   role_name = "my-role"
   role_path = "/"
 
+  create_instance_profile = true
+
   assume_role_policy_file = "files/assume-policy.tpl"
   assume_role_policy_vars = {
     role_name = "my-role"
