@@ -9,6 +9,12 @@ variable "role_path" {
   description = "(optional, default: /) Role path"
 }
 
+variable "create_instance_profile" {
+  type        = bool
+  default     = false
+  description = "(optional, default: false) Controls whether the instance profile is created"
+}
+
 variable "assume_role_policy_file" {
   type        = string
   description = "(required) Role name"
