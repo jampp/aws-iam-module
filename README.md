@@ -68,7 +68,7 @@ module "inline_role" {
 | assume_role_policy_file | Tempalte file with the policy that grants an entity permission to assume the role. | string | `null` | yes |
 | assume_role_policy_vars | Variables to inject into `assume_role_policy_file` | `map(any)` | `{}` | no |
 | inline_policies | Map defining an exclusive set of IAM inline policies associated with the IAM role. | `map(any)` | `{}` | no |
-| managed_policy_arns | List of exclusive IAM managed policy ARNs to attach to the IAM role. If this attribute is not configured. | `list(string)` | `[]` | no |
+| managed_policy_arns | List of exclusive IAM managed policy ARNs to attach to the IAM role. If this attribute is not configured, Terraform will ignore policy attachments to this resource." | `list(string)` | `[]` | no |
 | tags | Tags for all resources managed by this module. | `map(string)` | `{}` | no |
 
 ### Outputs
