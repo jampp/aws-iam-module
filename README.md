@@ -63,11 +63,13 @@ module "inline_role" {
 |------|-------------|:----:|:-------:|:--------:|
 | role_name | Friendly name of the role. If omitted, Terraform will assign a random, unique name | `string` | `""` | no |
 | role_path | Path to the role. | string | `/` | no |
+| description | Description of the role. | string | `"` | no |
 | create_instance_profile | Controls whether the instance profile is created. | boolean | `false` | no |
 | assume_role_policy_file | Tempalte file with the policy that grants an entity permission to assume the role. | string | `null` | yes |
 | assume_role_policy_vars | Variables to inject into `assume_role_policy_file` | `map(any)` | `{}` | no |
 | inline_policies | Map defining an exclusive set of IAM inline policies associated with the IAM role. | `map(any)` | `{}` | no |
-| tags | Tags for all resources managed by this module | `map(string)` | `{}` | no |
+| managed_policy_arns | List of exclusive IAM managed policy ARNs to attach to the IAM role. If this attribute is not configured. | `list(string)` | `[]` | no |
+| tags | Tags for all resources managed by this module. | `map(string)` | `{}` | no |
 
 ### Outputs
 

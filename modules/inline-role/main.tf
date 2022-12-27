@@ -1,8 +1,9 @@
 data "aws_caller_identity" "current" {}
 
 resource "aws_iam_role" "iam_role" {
-  name = var.role_name
-  path = var.role_path
+  name        = var.role_name
+  path        = var.role_path
+  description = var.description
 
   assume_role_policy = templatefile(var.assume_role_policy_file, merge(
     { account_id = data.aws_caller_identity.current.account_id },
@@ -17,6 +18,8 @@ resource "aws_iam_role" "iam_role" {
       policy = templatefile(inline_policy.value.file, inline_policy.value.vars)
     }
   }
+
+  managed_policy_arns = var.managed_policy_arns
 
   tags = var.tags
 
